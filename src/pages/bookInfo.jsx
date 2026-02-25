@@ -5,7 +5,7 @@ import Rating from '../components/ui/rating'
 import Price from '../components/ui/price'
 import Book from '../components/ui/book'
 
-const bookInfo = ({ books }) => {
+const BookInfo = ({ books }) => {
    const { id } = useParams()
 const book = books.find(book => +book.id === +id)
 
@@ -24,13 +24,13 @@ const book = books.find(book => +book.id === +id)
                         </div>
                         <div className="book__selected">
                             <figure className="book__selected--figure">
-                                <img src={book.url} alt="" className="book__selected--ig" />
+                                <img src={book.url} alt="" className="book__selected--img" />
                                 </figure>
                                 <div className="book__selected--description">
                                     <h2 className="book__selected--title">{book.title}</h2>
                                     <Rating rating={book.rating} />
                                     <div className="book__selected--price">
-                                    <Price originalPrice={book.originalPrice} salePrice={book/salePrice} />
+                                    <Price originalPrice={book.originalPrice} salePrice={book.salePrice} />
                                     </div>
                                     <div className="book__summary">
                                         <h3 className="book__summary--title">Summary</h3>
@@ -67,4 +67,4 @@ const book = books.find(book => +book.id === +id)
     )
 }
 
-export default bookInfo
+export default BookInfo
