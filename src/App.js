@@ -13,7 +13,32 @@ function App() {
   const [cart, setCart] = useState([])
 
   function addToCart(book) {
-    setCart([...cart, book])
+    setCart([...cart, {...book, quantity: 1}])
+
+  }
+
+  function changeQuantity(book, quantity) {
+        setCart(cart.map(item => item.id === book.id
+            ? {
+              ...item,
+              quantity: +quantity,
+            }
+            : item
+           )
+          )
+  }
+
+  function removeItem(item) {
+  setCart(cart.filter(book => book.id !== item.id))
+  }
+
+  function numberOfItems() {
+    let counter = 0
+    cart.forEach(item => {
+      counter += item.quantity
+    })
+
+    return counter
 
   }
 
@@ -24,12 +49,12 @@ function App() {
   return (
     <Router>
     <div className="App">
-      <Nav />
+      <Nav numberOfItems={numberOfItems()}/>
       <Routes>
       <Route path="/" exact element={<Home />} />
       <Route path="/books" exact element={<Books books={books} /> } />
-     <Route path="/books/:id" exact element={<BookInfo books={books} addToCart={addToCart} /> }  />
-     <Route path="/cart" exact element={<Cart books={books} /> }  />
+     <Route path="/books/:id" exact element={<BookInfo books={books} addToCart={addToCart} changeQuantity = {changeQuantity} removeItem = {removeItem}/> }  />
+     <Route path="/cart" exact element={<Cart books={books} cart={cart}/> }  />
      </Routes>
       <Footer />
     </div>
