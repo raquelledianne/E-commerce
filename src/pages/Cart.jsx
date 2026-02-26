@@ -6,7 +6,7 @@ const Cart = ({ cart, changeQuantity, removeItem }) => {
     const total = () => {
         let price = 0
         cart.forEach((item) => {
-            price += +((item.salePrice || item.OriginalPrice) * item.quantity).toFixed(2)
+            price += +((item.salePrice || item.originalPrice) * item.quantity).toFixed(2)
         })
         
         return price 
@@ -40,10 +40,10 @@ const Cart = ({ cart, changeQuantity, removeItem }) => {
                                             </div>
                                         </div>
                                         <div className="cart__quantity">
-                                            <input type="number" min={0} max={99} class="cart__input"
+                                            <input type="number" min={0} max={99} className="cart__input"
                                             value={book.quantity} onChange={(event) => changeQuantity(book, event.target.value)} />
                                         </div>
-                                        <div className="cart__total">${((book.salePrice || book.OriginalPrice) * book.quantity).toFixed(2)}</div>
+                                        <div className="cart__total">${((book.salePrice || book.originalPrice) * book.quantity).toFixed(2)}</div>
                                     </div>
                                     
                                 
@@ -73,7 +73,7 @@ const Cart = ({ cart, changeQuantity, removeItem }) => {
                                     </div>
                                     <div className="total__item total__price">
                                         <span>Total</span>
-                                        <span>${(total).toFixed(2)}</span>
+                                        <span>${total().toFixed(2)}</span>
                                     </div>
                                     <button className="btn btn__checkout no-cursor">
                                         Proceed to Checkout
