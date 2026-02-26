@@ -53,7 +53,7 @@ function App() {
       <Routes>
       <Route path="/" exact element={<Home />} />
       <Route path="/books" exact element={<Books books={books} /> } />
-     <Route path="/books/:id" exact element={<BookInfo books={books} addToCart={addToCart} changeQuantity = {changeQuantity} removeItem = {removeItem}/> }  />
+     <Route path="/books/:id" exact element={<BookInfo books={books} addToCart={addToCart} changeQuantity = {changeQuantity} removeItem = {removeItem} cart={cart} /> }  />
      <Route path="/cart" exact element={<Cart books={books} cart={cart}/> }  />
      </Routes>
       <Footer />
